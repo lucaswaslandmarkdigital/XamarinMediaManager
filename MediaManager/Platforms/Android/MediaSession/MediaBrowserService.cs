@@ -10,6 +10,7 @@ using AndroidX.Media;
 using AndroidX.Media.Session;
 using Com.Google.Android.Exoplayer2.UI;
 using MediaManager.Platforms.Android.Media;
+using static Android.OS.Build;
 
 namespace MediaManager.Platforms.Android.MediaSession
 {
@@ -99,7 +100,17 @@ namespace MediaManager.Platforms.Android.MediaSession
 
         protected virtual void PrepareMediaSession()
         {
-            var mediaSession = MediaManager.MediaSession = new MediaSessionCompat(this, nameof(MediaBrowserService));
+            PendingIntent sessionIntent;
+            // Build a PendingIntent that can be used to launch the UI.
+         
+            var intent = this.ApplicationContext.PackageManager.GetLaunchIntentForPackage(this.ApplicationContext.PackageName);
+
+            PendingIntentFlags flag = 0;
+            if (VERSION.SdkInt >= BuildVersionCodes.M) flag = PendingIntentFlags.Immutable;
+
+            sessionIntent = PendingIntent.GetActivity(ApplicationContext, 0, intent, flag);
+
+            var mediaSession = MediaManager.MediaSession = new MediaSessionCompat(this, nameof(MediaBrowserService), new ComponentName(ApplicationContext, nameof(MediaBrowserService)), mbrIntent: sessionIntent);
             mediaSession.SetSessionActivity(MediaManager.SessionActivityPendingIntent);
             mediaSession.Active = true;
 
@@ -112,12 +123,6 @@ namespace MediaManager.Platforms.Android.MediaSession
         protected virtual void PrepareNotificationManager()
         {
             MediaDescriptionAdapter = new MediaDescriptionAdapter();
-            PlayerNotificationManager = Com.Google.Android.Exoplayer2.UI.PlayerNotificationManager.CreateWithNotificationChannel(
-                this,
-                ChannelId,
-                Resource.String.exo_download_notification_channel_name,
-                ForegroundNotificationId,
-                MediaDescriptionAdapter);
 
             //Needed for enabling the notification as a mediabrowser.
             NotificationListener = new NotificationListener();
@@ -135,6 +140,15 @@ namespace MediaManager.Platforms.Android.MediaSession
                 StopSelf();
                 IsForeground = false;
             };
+
+            PlayerNotificationManager = Com.Google.Android.Exoplayer2.UI.PlayerNotificationManager.CreateWithNotificationChannel(
+                this,
+                ChannelId,
+                Resource.String.exo_download_notification_channel_name,
+                Resource.String.exo_download_notification_channel_name,
+                ForegroundNotificationId,
+                MediaDescriptionAdapter,
+                NotificationListener);
 
             PlayerNotificationManager.SetFastForwardIncrementMs((long)MediaManager.StepSizeForward.TotalMilliseconds);
             PlayerNotificationManager.SetRewindIncrementMs((long)MediaManager.StepSizeBackward.TotalMilliseconds);
