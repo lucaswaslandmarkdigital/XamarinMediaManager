@@ -16,7 +16,7 @@ namespace MediaManager.Platforms.Android.Player
         {
         }
 
-        public bool OnCommand(IPlayer p0, IControlDispatcher p1, string p2, Bundle p3, ResultReceiver p4)
+        public bool OnCommand(IPlayer p0, string p2, Bundle p3, ResultReceiver p4)
         {
             return false;
         }

@@ -58,7 +58,9 @@ namespace MediaManager.Platforms.Android.Notifications
             set
             {
                 base.ShowNavigationControls = value;
-                PlayerNotificationManager?.SetUseNavigationActions(ShowNavigationControls);
+                //PlayerNotificationManager?.SetUseNavigationActions(ShowNavigationControls);
+                PlayerNotificationManager.SetUsePreviousAction(ShowNavigationControls);
+                PlayerNotificationManager.SetUseNextAction(ShowNavigationControls);
             }
         }
 
@@ -72,11 +74,15 @@ namespace MediaManager.Platforms.Android.Notifications
 
                 if (ShowNavigationControls && MediaManager.Queue.Count > 1)
                 {
-                    PlayerNotificationManager.SetUseNavigationActions(true);
+                    //PlayerNotificationManager.SetUseNavigationActions(true);
+                    PlayerNotificationManager.SetUsePreviousAction(true);
+                    PlayerNotificationManager.SetUseNextAction(true);
                 }
                 else
                 {
-                    PlayerNotificationManager.SetUseNavigationActions(false);
+                    PlayerNotificationManager.SetUsePreviousAction(false);
+                    PlayerNotificationManager.SetUseNextAction(false);
+                    //PlayerNotificationManager.SetUseNavigationActions(false);
                 }
                 PlayerNotificationManager.Invalidate();
             }

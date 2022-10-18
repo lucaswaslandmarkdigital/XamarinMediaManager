@@ -10,11 +10,11 @@ namespace MediaManager.Platforms.Android.Player
 {
     public class MediaSessionConnectorPlaybackPreparer : Java.Lang.Object, MediaSessionConnector.IPlaybackPreparer
     {
-        protected IExoPlayer _player;
+        protected SimpleExoPlayer _player;
         protected ConcatenatingMediaSource _mediaSource;
         protected MediaManagerImplementation MediaManager => CrossMediaManager.Android;
 
-        public MediaSessionConnectorPlaybackPreparer(IExoPlayer player, ConcatenatingMediaSource mediaSource)
+        public MediaSessionConnectorPlaybackPreparer(SimpleExoPlayer player, ConcatenatingMediaSource mediaSource)
         {
             _player = player;
             _mediaSource = mediaSource;
@@ -34,7 +34,7 @@ namespace MediaManager.Platforms.Android.Player
             PlaybackStateCompat.ActionPlayFromSearch |
             PlaybackStateCompat.ActionPlayFromUri;
 
-        public bool OnCommand(IPlayer p0, IControlDispatcher p1, string p2, Bundle p3, ResultReceiver p4)
+        public bool OnCommand(IPlayer p0, string p2, Bundle p3, ResultReceiver p4)
         {
             return false;
         }

@@ -122,18 +122,18 @@ namespace MediaManager.Platforms.Android.MediaSession
             };
 
 
-            PlayerNotificationManager = Com.Google.Android.Exoplayer2.UI.PlayerNotificationManager.CreateWithNotificationChannel(
+            PlayerNotificationManager = new Com.Google.Android.Exoplayer2.UI.PlayerNotificationManager.Builder(
                 this,
-                ChannelId,
-                Resource.String.exo_download_notification_channel_name,
                 ForegroundNotificationId,
-                MediaDescriptionAdapter,
-                NotificationListener);
+                ChannelId)
+                .SetMediaDescriptionAdapter(MediaDescriptionAdapter)
+                .SetNotificationListener(NotificationListener)
+                .Build();
 
 
 
-            PlayerNotificationManager.SetFastForwardIncrementMs((long)MediaManager.StepSizeForward.TotalMilliseconds);
-            PlayerNotificationManager.SetRewindIncrementMs((long)MediaManager.StepSizeBackward.TotalMilliseconds);
+            //PlayerNotificationManager.SetFastForwardIncrementMs((long)MediaManager.StepSizeForward.TotalMilliseconds);
+            //PlayerNotificationManager.SetRewindIncrementMs((long)MediaManager.StepSizeBackward.TotalMilliseconds);
 
             //TODO: not sure why this is broken? Maybe in the binding
             //PlayerNotificationManager.SetNotificationListener(NotificationListener);
@@ -141,7 +141,7 @@ namespace MediaManager.Platforms.Android.MediaSession
             PlayerNotificationManager.SetMediaSessionToken(SessionToken);
             //PlayerNotificationManager.SetOngoing(true);
             PlayerNotificationManager.SetUsePlayPauseActions(MediaManager.Notification.ShowPlayPauseControls);
-            PlayerNotificationManager.SetUseNavigationActions(MediaManager.Notification.ShowNavigationControls);
+            //PlayerNotificationManager.SetUseNavigationActions(MediaManager.Notification.ShowNavigationControls);
             PlayerNotificationManager.SetSmallIcon(MediaManager.NotificationIconResource);
 
             //Must be called to start the connection
