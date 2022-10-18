@@ -92,4 +92,9 @@
     <None Remove="Platforms\Tizen\**\*.cs" />
     <Compile Include="Platforms\Tizen\**\*.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Update="GlobalUsings.cs">
+      <SubType></SubType>
+    </Compile>
+  </ItemGroup>
 </Project>
