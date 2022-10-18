@@ -102,10 +102,10 @@ namespace MediaManager.Platforms.Android.MediaSession
             MediaDescriptionAdapter = new MediaDescriptionAdapter();
             PlayerNotificationManager = Com.Google.Android.Exoplayer2.UI.PlayerNotificationManager.CreateWithNotificationChannel(
                 this,
-                ChannelId,
-                Resource.String.exo_download_notification_channel_name,
-                ForegroundNotificationId,
-                MediaDescriptionAdapter);
+                ChannelId)
+                .SetMediaDescriptionAdapter(MediaDescriptionAdapter)
+                .SetNotificationListener(NotificationListener)
+                .Build();
 
             //Needed for enabling the notification as a mediabrowser.
             NotificationListener = new NotificationListener();
