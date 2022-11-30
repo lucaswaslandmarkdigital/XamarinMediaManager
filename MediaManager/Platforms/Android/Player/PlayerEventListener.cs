@@ -6,7 +6,7 @@ using static Com.Google.Android.Exoplayer2.IPlayer;
 
 namespace MediaManager.Platforms.Android.Player
 {
-    public class PlayerEventListener : Java.Lang.Object, IEventListener
+    public class PlayerEventListener : Java.Lang.Object, IPlayerListener
     {
         public PlayerEventListener()
         {

@@ -56,30 +56,41 @@ namespace MediaManager.Platforms.Android.Media
                 case MediaType.Video:
                 case MediaType.Default:
                     mediaSource = new ProgressiveMediaSource.Factory(MediaManager.AndroidMediaPlayer.DataSourceFactory)
-                        .SetTag(mediaDescription)
-                        .CreateMediaSource(mediaUri);
+                        //TODO CHECK
+                        //.SetTag(mediaDescription)                        
+                        .CreateMediaSource(new Com.Google.Android.Exoplayer2.MediaItem.Builder().SetUri(mediaUri).SetTag(mediaDescription).Build());
                     break;
                 case MediaType.Dash:
+                    throw new NotImplementedException("Dash");
+                    /*
                     if (MediaManager.AndroidMediaPlayer.DashChunkSourceFactory == null)
                         throw new ArgumentNullException(nameof(AndroidMediaPlayer.DashChunkSourceFactory));
 
                     mediaSource = new DashMediaSource.Factory(MediaManager.AndroidMediaPlayer.DashChunkSourceFactory, MediaManager.AndroidMediaPlayer.DataSourceFactory)
                         .SetTag(mediaDescription)
                         .CreateMediaSource(mediaUri);
+                    */
                     break;
                 case MediaType.Hls:
+                    throw new NotImplementedException("Hls");
+                    /*
                     mediaSource = new HlsMediaSource.Factory(MediaManager.AndroidMediaPlayer.DataSourceFactory)
                         .SetAllowChunklessPreparation(true)
                         .SetTag(mediaDescription)
                         .CreateMediaSource(mediaUri);
+                    */
                     break;
                 case MediaType.SmoothStreaming:
+
+                    throw new NotImplementedException("SmoothStreaming");
+                    /*
                     if (MediaManager.AndroidMediaPlayer.SsChunkSourceFactory == null)
                         throw new ArgumentNullException(nameof(AndroidMediaPlayer.SsChunkSourceFactory));
 
                     mediaSource = new SsMediaSource.Factory(MediaManager.AndroidMediaPlayer.SsChunkSourceFactory, MediaManager.AndroidMediaPlayer.DataSourceFactory)
                         .SetTag(mediaDescription)
                         .CreateMediaSource(mediaUri);
+                    */
                     break;
                 default:
                     throw new ArgumentNullException(nameof(mediaType));
