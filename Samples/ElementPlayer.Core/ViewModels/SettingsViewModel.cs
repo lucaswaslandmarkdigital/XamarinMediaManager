@@ -1,10 +1,11 @@
-﻿using MvvmCross.Navigation;
+﻿using Microsoft.Extensions.Logging;
+using MvvmCross.Navigation;
 
 namespace ElementPlayer.Core.ViewModels
 {
     public class SettingsViewModel : BaseViewModel
     {
-        public SettingsViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService) : base(logProvider, navigationService)
+        public SettingsViewModel(ILoggerFactory logProvider, IMvxNavigationService navigationService) : base(logProvider, navigationService)
         {
         }
 

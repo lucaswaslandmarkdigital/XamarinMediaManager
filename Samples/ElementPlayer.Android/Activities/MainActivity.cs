@@ -29,7 +29,7 @@ namespace ElementPlayer.Android.Activities
             bottomNavigation.NavigationItemSelected += BottomNavigation_NavigationItemSelected;
         }
 
-        private void BottomNavigation_NavigationItemSelected(object sender, BottomNavigationView.NavigationItemSelectedEventArgs e)
+        private void BottomNavigation_NavigationItemSelected(object sender, BottomNavigationView e)
         {
             switch (e.Item.ItemId)
             {

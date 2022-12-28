@@ -49,8 +49,8 @@ namespace MediaManager.Platforms.Android.Player
         public PlayerEventListener PlayerEventListener { get; set; }
         protected RatingCallback RatingCallback { get; set; }
 
-        private SimpleExoPlayer _player;
-        public SimpleExoPlayer Player
+        private IExoPlayer _player;
+        public IExoPlayer Player
         {
             get
             {
@@ -164,6 +164,8 @@ namespace MediaManager.Platforms.Android.Player
             SsChunkSourceFactory = new DefaultSsChunkSource.Factory(DataSourceFactory);
 
             Player = new SimpleExoPlayer.Builder(Context).Build();
+            Player = new ExoPlayerBuilder(Context)
+                Build();
             //Player.VideoSizeChanged += Player_VideoSizeChanged;
 
             var audioAttributes = new Com.Google.Android.Exoplayer2.Audio.AudioAttributes.Builder()

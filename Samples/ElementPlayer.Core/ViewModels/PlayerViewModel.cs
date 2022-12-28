@@ -5,6 +5,7 @@ using MediaManager.Library;
 using MediaManager.Media;
 using MediaManager.Playback;
 using MediaManager.Player;
+using Microsoft.Extensions.Logging;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using Xamarin.Forms;
@@ -13,7 +14,7 @@ namespace ElementPlayer.Core.ViewModels
 {
     public class PlayerViewModel : BaseViewModel
     {
-        public PlayerViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IMediaManager mediaManager) : base(logProvider, navigationService)
+        public PlayerViewModel(ILoggerFactory logProvider, IMvxNavigationService navigationService, IMediaManager mediaManager) : base(logProvider, navigationService)
         {
             MediaManager = mediaManager;
             PlayPauseCommand = new MvxAsyncCommand(MediaManager.PlayPause);
@@ -76,32 +77,32 @@ namespace ElementPlayer.Core.ViewModels
 
         private void Current_MediaItemFailed(object sender, MediaItemFailedEventArgs e)
         {
-            Log.Debug($"Media item failed: {e.MediaItem.Title}, Message: {e.Message}, Exception: {e.Exeption?.ToString()};");
+            Log.LogDebug($"Media item failed: {e.MediaItem.Title}, Message: {e.Message}, Exception: {e.Exeption?.ToString()};");
         }
 
         private void Current_MediaItemFinished(object sender, MediaItemEventArgs e)
         {
-            Log.Debug($"Media item finished: {e.MediaItem.Title};");
+            Log.LogDebug($"Media item finished: {e.MediaItem.Title};");
         }
 
         private void Current_MediaItemChanged(object sender, MediaItemEventArgs e)
         {
-            Log.Debug($"Media item changed, new item title: {e.MediaItem.Title};");
+            Log.LogDebug($"Media item changed, new item title: {e.MediaItem.Title};");
         }
 
         private void MediaManager_StateChanged(object sender, StateChangedEventArgs e)
         {
-            Log.Debug($"Status changed: {System.Enum.GetName(typeof(MediaPlayerState), e.State)};");
+            Log.LogDebug($"Status changed: {System.Enum.GetName(typeof(MediaPlayerState), e.State)};");
         }
 
         private void Current_BufferingChanged(object sender, BufferedChangedEventArgs e)
         {
-            Log.Debug($"Total buffered time is {e.Buffered};");
+            Log.LogDebug($"Total buffered time is {e.Buffered};");
         }
 
         private void Current_PositionChanged(object sender, MediaManager.Playback.PositionChangedEventArgs e)
         {
-            Log.Debug($"Current position is {e.Position};");
+            Log.LogDebug($"Current position is {e.Position};");
             RaisePropertyChanged(() => Position);
         }
     }

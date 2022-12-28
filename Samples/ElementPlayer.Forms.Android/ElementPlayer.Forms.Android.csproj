@@ -15,7 +15,7 @@
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <TargetFrameworkVersion>v10.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v12.0</TargetFrameworkVersion>
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
     <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
     <NuGetPackageImportStamp>
@@ -126,7 +126,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\MediaManager.Forms\MediaManager.Forms.csproj">
-      <Project>{a1f6d7d2-d6d3-4ff2-87e7-d0cef41d0653}</Project>
+      <Project>{A1F6D7D2-D6D3-4FF2-87E7-D0CEF41D0653}</Project>
       <Name>MediaManager.Forms</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\MediaManager\MediaManager.csproj">
@@ -134,11 +134,11 @@
       <Name>MediaManager</Name>
     </ProjectReference>
     <ProjectReference Include="..\ElementPlayer.Core\ElementPlayer.Core.csproj">
-      <Project>{d4fba2b6-2057-412d-a391-0d1bf0e04e12}</Project>
+      <Project>{D4FBA2B6-2057-412D-A391-0D1BF0E04E12}</Project>
       <Name>ElementPlayer.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\ElementPlayer.Forms.UI\ElementPlayer.Forms.UI.csproj">
-      <Project>{1cef2991-9907-47ae-901d-c3421f037364}</Project>
+      <Project>{1CEF2991-9907-47AE-901D-C3421F037364}</Project>
       <Name>ElementPlayer.Forms.UI</Name>
     </ProjectReference>
   </ItemGroup>

@@ -159,7 +159,7 @@
       <Name>MediaManager</Name>
     </ProjectReference>
     <ProjectReference Include="..\ElementPlayer.Core\ElementPlayer.Core.csproj">
-      <Project>{d4fba2b6-2057-412d-a391-0d1bf0e04e12}</Project>
+      <Project>{D4FBA2B6-2057-412D-A391-0D1BF0E04E12}</Project>
       <Name>ElementPlayer.Core</Name>
     </ProjectReference>
   </ItemGroup>

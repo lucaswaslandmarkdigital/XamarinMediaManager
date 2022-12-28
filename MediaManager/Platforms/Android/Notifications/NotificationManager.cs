@@ -59,8 +59,8 @@ namespace MediaManager.Platforms.Android.Notifications
             {
                 base.ShowNavigationControls = value;
                 //PlayerNotificationManager?.SetUseNavigationActions(ShowNavigationControls);
-                PlayerNotificationManager.SetUsePreviousAction(ShowNavigationControls);
-                PlayerNotificationManager.SetUseNextAction(ShowNavigationControls);
+                PlayerNotificationManager?.SetUsePreviousAction(ShowNavigationControls);
+                PlayerNotificationManager?.SetUseNextAction(ShowNavigationControls);
             }
         }
 

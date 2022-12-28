@@ -1,6 +1,7 @@
 ﻿<Project Sdk="MSBuild.Sdk.Extras">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;xamarin.ios10;xamarin.mac20;xamarin.tvos10;monoandroid12.0;tizen40</TargetFrameworks>
+    <!--xamarin.ios10;xamarin.mac20;xamarin.tvos10;;tizen40-->
+    <TargetFrameworks>netstandard2.0;monoandroid12.0</TargetFrameworks>
     <TargetFrameworks Condition=" '$(OS)' == 'Windows_NT' ">uap10.0.18362;net472;netcoreapp3.1;$(TargetFrameworks)</TargetFrameworks>
   </PropertyGroup>
 
@@ -15,6 +16,9 @@
 
   <Import Project="$(SolutionDir)netcore.targets" Condition=" $(TargetFramework.StartsWith('netcoreapp3.1'))" />
 
+  <ItemGroup>
+    <None Remove="netstandard, Version=2.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
     <Compile Remove="Platforms\**\*.cs" />
@@ -87,5 +91,8 @@
     direct reference seems to help get the build to work -->
   <ItemGroup Condition=" $(TargetFramework.StartsWith('xamarin.mac')) ">
     <Reference Include="netstandard" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="netstandard, Version=2.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51" />
   </ItemGroup>
 </Project>

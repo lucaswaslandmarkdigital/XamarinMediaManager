@@ -5,14 +5,6 @@ using System.Windows.Input;
 using Android.App;
 using Android.Views;
 using Android.Widget;
-using Google.Android.Material.Internal;
-using Google.Android.Material.TextField;
-using MvvmCross.Binding.BindingContext;
-using MvvmCross.Commands;
-using MvvmCross.Core;
-using MvvmCross.IoC;
-using MvvmCross.Navigation;
-using MvvmCross.ViewModels;
 
 namespace ElementPlayer.Forms.Droid
 {
@@ -64,19 +56,6 @@ namespace ElementPlayer.Forms.Droid
             numberPicker.SetDisplayedValues(new string[] { "" });
         }
 
-        public void Include(TextInputLayout textInputLayout)
-        {
-            textInputLayout.Hint = $"{textInputLayout.Hint}";
-            textInputLayout.Error = $"{textInputLayout.Error}";
-            textInputLayout.ErrorEnabled = true;
-        }
-
-        public void Include(TextInputEditText textInputEditText)
-        {
-            textInputEditText.Hint = $"{textInputEditText.Hint}";
-            textInputEditText.Error = $"{textInputEditText.Error}";
-            textInputEditText.SetAutofillHints("");
-        }
 
         public void Include(Activity act)
         {
@@ -98,29 +77,9 @@ namespace ElementPlayer.Forms.Droid
             changed.PropertyChanged += (sender, e) => { _ = e.PropertyName; };
         }
 
-        public void Include(MvxPropertyInjector injector)
-        {
-            _ = new MvxPropertyInjector();
-        }
 
-        public void Include(MvxTaskBasedBindingContext context)
-        {
-            context.Dispose();
-            var context2 = new MvxTaskBasedBindingContext();
-            context2.Dispose();
-        }
-
-        public void Include(MvxViewModelViewTypeFinder viewModelViewTypeFinder)
-        {
-            _ = new MvxViewModelViewTypeFinder(null, null);
-        }
-
-        public void Include(MvxNavigationService service, IMvxViewModelLoader loader)
-        {
-            _ = new MvxNavigationService(null, loader);
-            _ = new MvxAppStart<MvxNullViewModel>(null, null);
-        }
-
+        
+        
         public void Include(ConsoleColor color)
         {
             Console.Write("");
@@ -134,43 +93,13 @@ namespace ElementPlayer.Forms.Droid
             Console.ForegroundColor = ConsoleColor.DarkGray;
         }
 
-        public void Include(MvvmCross.Plugin.Json.Plugin plugin)
-        {
-            plugin.Load();
-        }
-
-        public void Include(AndroidX.AppCompat.Widget.AlertDialogLayout alertDialog)
-        {
-            _ = new AndroidX.AppCompat.Widget.AlertDialogLayout(Application.Context);
-        }
-
+        
+        
         /*public void Include(AndroidX.ConstraintLayout.Widget.ConstraintLayout constraintLayout)
         {
             _ = new AndroidX.ConstraintLayout.Widget.ConstraintLayout(Application.Context);
         }*/
 
-        public void Include(AndroidX.AppCompat.Widget.FitWindowsLinearLayout fitWindowsLinearLayout)
-        {
-            _ = new AndroidX.AppCompat.Widget.FitWindowsLinearLayout(Application.Context);
-        }
-
-        public void Include(BaselineLayout baselineLayout) => _ = new BaselineLayout(Application.Context);
-
-        public void IncludeMvvmcross64()
-        {
-            _ = new MvxSettings();
-            _ = new MvxStringToTypeParser(); //??
-            //_ = new MvxPluginManager(null); //should not be required
-            _ = new MvxViewModelLoader(null);
-            _ = new MvxNavigationService(null, null);
-            _ = new MvxViewModelByNameLookup();
-
-            _ = new MvxViewModelViewTypeFinder(null, null);
-            _ = new MvxViewModelViewLookupBuilder();
-            _ = new MvxCommandCollectionBuilder();
-            _ = new MvxStringDictionaryNavigationSerializer();
-            _ = new MvxChildViewModelCache();
-            _ = new MvxWeakCommandHelper();
-        }
+        
     }
 }

@@ -1,4 +1,5 @@
-﻿using Android.App;
+﻿using System;
+using Android.App;
 using Android.Content;
 using Android.Support.V4.Media.Session;
 using Com.Google.Android.Exoplayer2;
@@ -22,7 +23,7 @@ using MediaManager.Volume;
 namespace MediaManager
 {
     [global::Android.Runtime.Preserve(AllMembers = true)]
-    public class MediaManagerImplementation : MediaManagerBase, IMediaManager<SimpleExoPlayer>
+    public class MediaManagerImplementation : MediaManagerBase, IMediaManager<IExoPlayer>
     {
         public MediaManagerImplementation()
         {
@@ -174,7 +175,7 @@ namespace MediaManager
         }
 
         public AndroidMediaPlayer AndroidMediaPlayer => (AndroidMediaPlayer)MediaPlayer;
-        public SimpleExoPlayer Player => AndroidMediaPlayer?.Player;
+        public IExoPlayer Player => AndroidMediaPlayer?.Player;
 
         private IVolumeManager _volume;
         public override IVolumeManager Volume
@@ -311,7 +312,17 @@ namespace MediaManager
 
             Queue.CurrentIndex = index;
 
-            MediaController.GetTransportControls().SkipToQueueItem(index);
+            Player.SeekTo(index, C.TimeUnset);
+            Player.Prepare(AndroidMediaPlayer.MediaSource, false, false);
+
+            
+
+            Player.PlayWhenReady = true;
+
+
+            var controls = MediaController.GetTransportControls();
+
+            //MediaController.GetTransportControls().SkipToQueueItem(index);
             return true;
         }
 

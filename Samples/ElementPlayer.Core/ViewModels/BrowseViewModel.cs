@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using ElementPlayer.Core.Assets;
 using MediaManager;
+using Microsoft.Extensions.Logging;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
@@ -11,7 +12,7 @@ namespace ElementPlayer.Core.ViewModels
     {
         private readonly IMediaManager mediaManager;
 
-        public BrowseViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IMediaManager mediaManager) : base(logProvider, navigationService)
+        public BrowseViewModel(ILoggerFactory logProvider, IMvxNavigationService navigationService, IMediaManager mediaManager) : base(logProvider, navigationService)
         {
             this.mediaManager = mediaManager;
         }

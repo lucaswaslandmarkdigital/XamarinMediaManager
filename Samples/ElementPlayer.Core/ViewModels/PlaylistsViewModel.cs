@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using MediaManager;
+using Microsoft.Extensions.Logging;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 
@@ -8,7 +9,7 @@ namespace ElementPlayer.Core.ViewModels
     public class PlaylistsViewModel : BaseViewModel
     {
 
-        public PlaylistsViewModel(IMvxLogProvider logProvider, IMvxNavigationService navigationService, IMediaManager mediaManager) : base(logProvider, navigationService)
+        public PlaylistsViewModel(ILoggerFactory logProvider, IMvxNavigationService navigationService, IMediaManager mediaManager) : base(logProvider, navigationService)
         {
             MediaManager = mediaManager;
         }
