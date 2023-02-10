@@ -92,7 +92,7 @@ namespace MediaManager.Platforms.Android.MediaSession
 
         protected virtual void PrepareMediaSession()
         {
-            var mediaSession = MediaManager.MediaSession = new MediaSessionCompat(this, nameof(MediaBrowserService));
+            var mediaSession = MediaManager.MediaSession = new MediaSessionCompat(this, MediaManager.MediaBrowserServiceType.Name);
             mediaSession.SetSessionActivity(MediaManager.SessionActivityPendingIntent);
             mediaSession.Active = true;
 
@@ -130,7 +130,7 @@ namespace MediaManager.Platforms.Android.MediaSession
             {
                 if (ongoing && !IsForeground)
                 {
-                    ContextCompat.StartForegroundService(ApplicationContext, new Intent(ApplicationContext, Java.Lang.Class.FromType(typeof(MediaBrowserService))));
+                    ContextCompat.StartForegroundService(ApplicationContext, new Intent(ApplicationContext, Java.Lang.Class.FromType(MediaManager.MediaBrowserServiceType)));
                     StartForeground(notificationId, notification, ForegroundService.TypeMediaPlayback);
                     MediaManager.Logger?.LogInfo("Starting foreground service");
                     IsForeground = true;
@@ -186,7 +186,7 @@ namespace MediaManager.Platforms.Android.MediaSession
         {
             //ServiceCompat.StopForeground(this, ServiceCompat.StopForegroundDetach);
 
-            MediaManager.Logger?.LogInfo($"Stopping foreground service, MediaBrowserService destroyed");
+            MediaManager.Logger?.LogInfo($"Stopping foreground service, {MediaManager.MediaBrowserServiceType.Name} destroyed");
             StopForeground(StopForegroundFlags.Remove);
             MediaManager.StateChanged -= MediaManager_StateChanged;
 

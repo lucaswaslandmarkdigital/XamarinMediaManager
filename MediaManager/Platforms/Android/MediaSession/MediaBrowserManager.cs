@@ -18,7 +18,11 @@ namespace MediaManager.Platforms.Android.MediaSession
         protected MediaBrowserConnectionCallback MediaBrowserConnectionCallback { get; set; }
         protected MediaControllerCallback MediaControllerCallback { get; set; }
         protected MediaBrowserSubscriptionCallback MediaBrowserSubscriptionCallback { get; set; }
-        protected virtual Java.Lang.Class ServiceType { get; } = Java.Lang.Class.FromType(typeof(MediaBrowserService));
+
+        protected virtual Java.Lang.Class ServiceType
+        {
+            get => Java.Lang.Class.FromType(MediaManager.MediaBrowserServiceType);
+        }
 
         protected bool IsConnected { get; private set; } = false;
         protected Context Context => MediaManager.Context;

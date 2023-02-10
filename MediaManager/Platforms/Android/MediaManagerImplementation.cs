@@ -54,6 +54,8 @@ namespace MediaManager
         }
 
         public LoadControlSettings LoadControlSettings { get; } = new LoadControlSettings();
+
+        public Type MediaBrowserServiceType { get; set; } = typeof(MediaBrowserService);
         
         private MediaSessionCompat _mediaSession;
         public MediaSessionCompat MediaSession
