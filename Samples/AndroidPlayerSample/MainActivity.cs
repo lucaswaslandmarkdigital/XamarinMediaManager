@@ -24,6 +24,7 @@ namespace AndroidPlayerSample
             CrossMediaManager.Android.LoadControlSettings.DefaultBufferForPlaybackMs = 500;
             CrossMediaManager.Android.LoadControlSettings.DefaultBufferForPlaybackMs = 500;
 
+            CrossMediaManager.Android.MediaBrowserServiceType = typeof(CustomMediaBrowserService);
             CrossMediaManager.Android.Logger = new MediaManagerLogger();
             
             CrossMediaManager.Current.Init(this);

@@ -59,6 +59,7 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomMediaBrowserService.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="MediaManagerLogger.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
