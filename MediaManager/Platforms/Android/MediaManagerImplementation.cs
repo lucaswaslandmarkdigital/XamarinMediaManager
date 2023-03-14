@@ -145,7 +145,7 @@ namespace MediaManager
             set
             {
                 base.StepSizeForward = value;
-                var playerNotificationManager = (Notification as MediaManager.Platforms.Android.Notifications.NotificationManager)?.PlayerNotificationManager;
+                //var playerNotificationManager = (Notification as MediaManager.Platforms.Android.Notifications.NotificationManager)?.PlayerNotificationManager;
                 //playerNotificationManager?.SetFastForwardIncrementMs((long)value.TotalMilliseconds);
             }
         }
@@ -156,7 +156,7 @@ namespace MediaManager
             set
             {
                 base.StepSizeBackward = value;
-                var playerNotificationManager = (Notification as MediaManager.Platforms.Android.Notifications.NotificationManager)?.PlayerNotificationManager;
+                //var playerNotificationManager = (Notification as MediaManager.Platforms.Android.Notifications.NotificationManager)?.PlayerNotificationManager;
                 //playerNotificationManager?.SetRewindIncrementMs((long)value.TotalMilliseconds);
             }
         }
@@ -205,7 +205,6 @@ namespace MediaManager
             }
             set => SetProperty(ref _extractor, value);
         }
-
 
         private INotificationManager _notification;
         public override INotificationManager Notification
@@ -270,7 +269,7 @@ namespace MediaManager
             // If we repeat all and there is no next in the Queue, we go back to the first
             else if (RepeatMode == RepeatMode.All && !Queue.HasNext)
             {
-                var mediaItem = Queue.First();
+                var mediaItem = Queue.FirstOrDefault();
                 return await PlayQueueItem(mediaItem);
             }
             // Otherwise we try to play the next media item in the queue
@@ -332,7 +331,9 @@ namespace MediaManager
             await EnsureInit();
 
             MediaController.GetTransportControls().Stop();
-            (Notification as MediaManager.Platforms.Android.Notifications.NotificationManager).Player = null;
+
+            if (Notification is MediaManager.Platforms.Android.Notifications.NotificationManager notificationManager)
+                notificationManager.Player = null;
         }
 
         public override RepeatMode RepeatMode
