@@ -131,7 +131,18 @@ namespace MediaManager.Platforms.Android.MediaSession
                 if (ongoing && !IsForeground)
                 {
                     ContextCompat.StartForegroundService(ApplicationContext, new Intent(ApplicationContext, Java.Lang.Class.FromType(typeof(MediaBrowserService))));
-                    StartForeground(notificationId, notification, ForegroundService.TypeMediaPlayback);
+
+                    // In case of Android 9 and below, just call StartForeground without ForegroundService.TypeMediaPlayback,
+                    // since that is available from version 10 (API Level 29).
+                    if (Build.VERSION.SdkInt <= BuildVersionCodes.P)
+                    {
+                        StartForeground(notificationId, notification);
+                    }
+                    else
+                    {
+                        StartForeground(notificationId, notification, ForegroundService.TypeMediaPlayback);
+                    }
+
                     MediaManager.Logger?.LogInfo("Starting foreground service");
                     IsForeground = true;
                 }
