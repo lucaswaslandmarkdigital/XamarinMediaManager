@@ -43,4 +43,7 @@
     <TargetFrameworkIdentifier>Tizen</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v6.5</TargetFrameworkVersion>
   </PropertyGroup>
+  <PropertyGroup Condition="$(TargetFramework.StartsWith('xamarin.ios'))">
+    <DefineConstants>$(DefineConstants);MONO;UIKIT;COCOA;APPLE;IOS</DefineConstants>
+  </PropertyGroup>
 </Project>
